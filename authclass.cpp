@@ -30,3 +30,5 @@ void AuthClass::somethingHappened(const QString &message){
     else
         qWarning() << component.errorString();
 }
+
+

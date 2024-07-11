@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import AuthModule 1.0
+import Qt5Compat.GraphicalEffects
 
 
 Window {
@@ -40,18 +41,36 @@ Window {
                 anchors.topMargin: 32
                 color: "#E0F1FF"
                 radius: 39
+
+                Image {
+                    id: profileImage
+                    source: "qrc:/source/img/source/img/logo.jpg"
+                    width: 78
+                    height: 78
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.top: parent.top
+                    fillMode: Image.PreserveAspectCrop
+
+                    property bool rounded: true
+                    property bool adapt: true
+
+                    layer.enabled: rounded
+                    layer.effect: OpacityMask {
+                        maskSource: Item {
+                            width: profileImage.width
+                            height: profileImage.height
+                            Rectangle {
+                                anchors.centerIn: parent
+                                width: profileImage.adapt ? profileImage.width : Math.min(profileImage.width, profileImage.height)
+                                height: profileImage.adapt ? profileImage.height : width
+                                radius: Math.min(width, height)
+                            }
+                        }
+                    }
+                }
             }
 
-            Image {
-                id: profileImage
-                source: "path/to/your/image.png"
-                width: 78
-                height: 78
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                anchors.topMargin: 32
-                fillMode: Image.PreserveAspectCrop
-            }
+
 
             Text {
                 id: titleText
@@ -59,7 +78,7 @@ Window {
                 width: 224
                 height: 29
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: profileImage.bottom
+                anchors.top: photo.bottom
                 anchors.topMargin: 20
                 font.family: "Roboto"
                 font.weight: Font.Medium
@@ -223,7 +242,29 @@ Window {
                        }
                        inputMethodHints: Qt.ImhNoAutoUppercase
                        echoMode: TextField.Password
+
+                       Image {
+                           id: visibilityIcon
+                           source: "qrc:/source/img/source/img/visibilityIcon.png"
+                           width: 20
+                           height: 20
+                           horizontalAlignment: Image.AlignRight
+                            anchors.right: parent.right
+                            anchors.rightMargin: 10
+                            anchors.verticalCenter: parent.verticalCenter
+
+                           fillMode: Image.PreserveAspectFit
+                           MouseArea {
+                               cursorShape: Qt.PointingHandCursor
+                               anchors.fill: parent
+                               onClicked: {
+                                   passwordField.echoMode = passwordField.echoMode === TextField.Password ? TextField.Normal : TextField.Password;
+                               }
+                           }
+                       }
                    }
+
+
 
 
                Text {
@@ -252,22 +293,7 @@ Window {
 
                }
             }
-            Image {
-                id: visibilityIcon
-                source: "path/to/your/visibilityIcon.png"
-                width: 24
-                height: 24
-                anchors.right: passwordField.right
-                anchors.rightMargin: 10
-                anchors.verticalCenter: passwordField.verticalCenter
-                fillMode: Image.PreserveAspectFit
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        passwordField.echoMode = passwordField.echoMode === TextField.Password ? TextField.Normal : TextField.Password;
-                    }
-                }
-            }
+
 
             Rectangle {
                 id: frame495
@@ -347,7 +373,7 @@ Window {
 
                 onClicked: {
                     if(authClassObj.checkUser(usernameField.text, passwordField.text)){
-                    var component = Qt.createComponent("qrc:/MainWindowApps.qml");
+                    var component = Qt.createComponent("qrc:/myFiles/MainWindowApps.qml");
                     console.log("Component Status:", component.status, component.errorString());
                     var window = component.createObject();
                     window.show();}
