@@ -1,11 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <authclass.h>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    qmlRegisterType<AuthClass>("AuthModule", 1, 0, "AuthClass");
     const QUrl url(u"qrc:/NewLents/main.qml"_qs);
     QObject::connect(
         &engine,

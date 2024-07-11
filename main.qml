@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import AuthModule 1.0
 
 
 Window {
@@ -314,6 +315,11 @@ Window {
                     }
                 }
             }
+            AuthClass{             // Определяем объект Custom
+                id: authClassObj    // назначаем его идентификатор
+            }
+
+
 
             Button {
                 id: signUpButton
@@ -339,10 +345,12 @@ Window {
                 }
 
 
-
-
                 onClicked: {
-                     console.log("Войти");
+                    if(authClassObj.checkUser(usernameField.text, passwordField.text)){
+                    var component = Qt.createComponent("qrc:/MainWindowApps.qml");
+                    console.log("Component Status:", component.status, component.errorString());
+                    var window = component.createObject();
+                    window.show();}
                 }
 
             }
