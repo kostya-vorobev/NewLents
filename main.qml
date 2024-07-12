@@ -9,7 +9,7 @@ Window {
     width: 462
     height: 537
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Знакомства")
 
 
     Rectangle {
@@ -197,6 +197,7 @@ Window {
                        Layout.column: 1
                        Layout.alignment: Qt.AlignCenter
                        Layout.rightMargin: 20
+                       text:"kostya"
                        width: 242
                        height: 36
                        placeholderText: "Username or email address"
@@ -224,6 +225,7 @@ Window {
                        Layout.column: 1
                        Layout.alignment: Qt.AlignCenter
                        Layout.rightMargin: 20
+                       text:"12345"
                        //Layout.rightMargin: 10
                        width: 242
                        height: 36
