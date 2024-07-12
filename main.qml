@@ -5,12 +5,18 @@ import AuthModule 1.0
 import Qt5Compat.GraphicalEffects
 
 
+
 Window {
     width: 462
     height: 537
     visible: true
     title: qsTr("Знакомства")
 
+    maximumHeight: height
+    maximumWidth: width
+
+    minimumHeight: height
+    minimumWidth: width
 
     Rectangle {
             id: loginForm
@@ -214,7 +220,9 @@ Window {
                            radius: 4
                        }
                        inputMethodHints: Qt.ImhNoAutoUppercase
-                       //validator: RegExpValidator { regExp: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ }
+                       validator: RegularExpressionValidator {
+                           regularExpression: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                       }
                    }
 
                    TextField {
