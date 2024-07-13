@@ -1,16 +1,18 @@
 <RCC>
     <qresource prefix="/myFiles">
-        <file>MainWindowApps.qml</file>
-        <file>MainMenuWindow.qml</file>
-        <file>MiniAppsWindow.qml</file>
-        <file>PopularWindow.qml</file>
-        <file>Top10Window.qml</file>
-        <file>NewWindow.qml</file>
-        <file>CommunicationWindow.qml</file>
-        <file>QuestionnairesWindow.qml</file>
-        <file>AboutWindow.qml</file>
-        <file>PolicyWindow.qml</file>
-        <file>EditProfileWindow.qml</file>
+        <file>source/qml/AboutWindow.qml</file>
+        <file>source/qml/CommunicationWindow.qml</file>
+        <file>source/qml/EditProfileWindow.qml</file>
+        <file>source/qml/MainMenuWindow.qml</file>
+        <file>source/qml/MainWindowApps.qml</file>
+        <file>source/qml/MiniAppsWindow.qml</file>
+        <file>source/qml/NewWindow.qml</file>
+        <file>source/qml/PolicyWindow.qml</file>
+        <file>source/qml/PopularWindow.qml</file>
+        <file>source/qml/QuestionnairesWindow.qml</file>
+        <file>source/qml/Top10Window.qml</file>
+        <file>source/qml/RegisterWindow.qml</file>
+        <file>source/qml/elemetControls/DatePicker.qml</file>
     </qresource>
     <qresource prefix="/source/img">
         <file>source/img/visibilityIcon.png</file>
@@ -22,5 +24,6 @@
         <file>source/img/questionnairesIcon.png</file>
         <file>source/img/top10Icon.png</file>
         <file>source/img/communicationIcon.png</file>
+        <file>source/img/comboBoxArrowIcon.png</file>
     </qresource>
 </RCC>

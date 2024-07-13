@@ -1,12 +1,17 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+
 import AuthModule 1.0
+
 import Qt5Compat.GraphicalEffects
 
-Window {
+import "qrc:/myFiles/source/qml/elemetControls"
+
+ApplicationWindow {
+    id: registerWindow
     width: 462
-    height: 537
+    height: 780
     visible: true
     title: qsTr("Знакомства")
 
@@ -17,9 +22,9 @@ Window {
     minimumWidth: width
 
     Rectangle {
-        id: loginForm
-        width: 462
-        height: 537
+        id: registerForm
+        width: parent.width
+        height: parent.height
         anchors.centerIn: parent
         color: "#FFFFFF"
         border.color: "#E0E0E0"
@@ -78,7 +83,7 @@ Window {
 
         Text {
             id: titleText
-            text: "Вход на платформу"
+            text: "Создайте новый аккаунт"
             width: 224
             height: 29
             anchors.horizontalCenter: parent.horizontalCenter
@@ -93,7 +98,7 @@ Window {
 
         Text {
             id: subtitleText
-            text: "Мы рады видеть вас снова"
+            text: "Присоединяйся к сообществу из 5 тыс. человек!"
             width: 180
             height: 17
             anchors.horizontalCenter: parent.horizontalCenter
@@ -148,9 +153,9 @@ Window {
             GridLayout {
                 id: grid
 
-                rows: 3
+                rows: 7
                 columns: 2
-
+                rowSpacing: 20
                 width: 462
                 height: 150
                 //anchors.top: parent.top
@@ -161,6 +166,74 @@ Window {
                     id: usernameLabel
 
                     Layout.row: 0
+                    Layout.column: 0
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    text: "* Имя:"
+                    font.family: "Roboto"
+                    font.weight: Font.Normal
+                    font.pixelSize: 14
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                    color: "#616161"
+                }
+
+                Text {
+
+                    id: switchLabel
+
+                    Layout.row: 1
+                    Layout.column: 0
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    text: "Пол:"
+                    font.family: "Roboto"
+                    font.weight: Font.Normal
+                    font.pixelSize: 14
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                    color: "#616161"
+                }
+
+                Text {
+
+                    id: dateLabel
+
+                    Layout.row: 2
+                    Layout.column: 0
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    text: "* Дата рождения:"
+                    font.family: "Roboto"
+                    font.weight: Font.Normal
+                    font.pixelSize: 14
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                    color: "#616161"
+                }
+
+                Text {
+
+                    id: cityLabel
+
+                    Layout.row: 3
+                    Layout.column: 0
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    text: "Город:"
+                    font.family: "Roboto"
+                    font.weight: Font.Normal
+                    font.pixelSize: 14
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                    color: "#616161"
+                }
+
+                Text {
+
+                    id: emailLabel
+
+                    Layout.row: 4
                     Layout.column: 0
                     Layout.fillHeight: true
                     Layout.fillWidth: true
@@ -177,7 +250,7 @@ Window {
                     id: passLabel
                     Layout.fillHeight: true
                     Layout.fillWidth: true
-                    Layout.row: 1
+                    Layout.row: 5
                     Layout.column: 0
                     //anchors.top: usernameLabel.bottom
                     text: "* Пароль:"
@@ -219,11 +292,153 @@ Window {
                     }
                 }
 
+                Text {
+                    id: menGenderLabel
+                    Layout.row: 1
+                    Layout.column: 1
+                    text: "Мужчина"
+                    font.family: "Roboto"
+                    font.weight: Font.Normal
+                    font.pixelSize: 14
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                    color: "#212121"
+                }
+
+                Switch {
+                    id: genderSwitch
+                    Layout.row: 1
+                    Layout.column: 1
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.rightMargin: 20
+                    anchors.left: menGenderLabel.right
+                    anchors.leftMargin: 20
+                    checked: true
+
+                    indicator: Rectangle {
+                        implicitWidth: 34
+                        implicitHeight: 14
+                        //x: genderSwitch.width - width - genderSwitch.rightPadding
+                        y: parent.height / 2 - height / 2
+                        radius: 13
+                        color: genderSwitch.checked ? "#2C98F0" : "#BDBDBD"
+                        border.color: "#BDBDBD"
+
+                        Rectangle {
+                            x: genderSwitch.checked ? parent.width - width : 0
+                            y: parent.height / 2 - height / 2
+                            width: 20
+                            height: 20
+                            radius: 13
+                            border.color: "#2C98F0"
+                        }
+                    }
+                }
+
+                Text {
+                    id: womanGenderLabel
+                    Layout.row: 1
+                    Layout.column: 1
+                    anchors.left: genderSwitch.right
+                    //anchors.leftMargin: 10
+                    text: "Женщина"
+                    font.family: "Roboto"
+                    font.weight: Font.Normal
+                    font.pixelSize: 14
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                    color: "#212121"
+                }
+
+                DatePicker {
+                    placeholderText: "00.00.0000"
+                    Layout.row: 2
+                    Layout.column: 1
+                    id: datepic
+                    width: 95
+                    height: 36
+                    mainWindow: registerWindow
+                    maxDate: new Date()
+                    locale: "ru_RU"
+                    calendar: "Gregorian"
+                }
+
+                ComboBox {
+                    id: cityCB
+                    Layout.minimumWidth: 242
+                    Layout.minimumHeight: 36
+                    Layout.row: 3
+                    Layout.column: 1
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.rightMargin: 20
+
+                    font.family: "Roboto"
+                    font.weight: Font.Normal
+                    font.pixelSize: 14
+                    background: Rectangle {
+                        color: "#FAFAFA"
+                        border.color: "#BDBDBD"
+                        border.width: 0.5
+                        radius: 4
+                    }
+                    model: ["C++", "Java", "JavaScript"]
+
+                    Image {
+                        id: comboBoxArrowIcon
+                        source: "qrc:/source/img/source/img/comboBoxArrowIcon.png"
+                        width: 24
+                        height: 24
+                        horizontalAlignment: Image.AlignRight
+                        anchors.right: parent.right
+                        anchors.rightMargin: 10
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        fillMode: Image.PreserveAspectFit
+                        MouseArea {
+                            cursorShape: Qt.PointingHandCursor
+                            anchors.fill: parent
+                            onClicked: {
+                                cityCB.popup.visible = true
+                            }
+                        }
+                    }
+                }
+
+                TextField {
+                    id: emailField
+                    Layout.minimumWidth: 242
+                    Layout.minimumHeight: 36
+                    Layout.row: 4
+                    Layout.column: 1
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.rightMargin: 20
+                    text: "kostya"
+                    width: 242
+                    height: 36
+                    placeholderText: "Username or email address"
+                    font.family: "Roboto"
+                    font.weight: Font.Normal
+                    font.pixelSize: 14
+                    horizontalAlignment: Text.AlignLeft
+                    verticalAlignment: Text.AlignVCenter
+                    color: "#212121"
+                    background: Rectangle {
+                        color: "#FAFAFA"
+                        border.color: "#BDBDBD"
+                        border.width: 0.5
+                        radius: 4
+                    }
+                    inputMethodHints: Qt.ImhNoAutoUppercase
+                    validator: RegularExpressionValidator {
+                        regularExpression: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+                    }
+                }
+
                 TextField {
                     id: passwordField
                     Layout.minimumWidth: 242
                     Layout.minimumHeight: 36
-                    Layout.row: 1
+                    Layout.row: 5
                     Layout.column: 1
                     Layout.alignment: Qt.AlignCenter
                     Layout.rightMargin: 20
@@ -270,14 +485,16 @@ Window {
                 }
 
                 Text {
-                    id: loginText
-                    Layout.row: 2
+                    id: passText
+                    Layout.row: 6
                     Layout.column: 1
                     Layout.topMargin: 5
-                    text: "Я не помню пароль"
+                    anchors.top: passwordField.bottom
+                    anchors.topMargin: 10
+                    text: "Надежный пароль"
                     width: 124
                     height: 36
-                    anchors.top: passwordField.bottom
+
                     font.family: "Roboto"
                     font.weight: Font.Medium
 
@@ -299,7 +516,7 @@ Window {
         Rectangle {
             id: frame495
             width: 462
-            height: 133
+            height: 178
             anchors.bottom: parent.bottom
             color: "#FFFFFF"
             border.color: "#E0E0E0"
@@ -308,14 +525,17 @@ Window {
 
         RowLayout {
             id: rowLayoutRegist
-            width: 300
+            width: parent.width
             anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: frame495.bottom
+            anchors.bottom: rowLayoutPolicyLabel.top
+            anchors.left: parent.left
             anchors.bottomMargin: 32
 
             Text {
                 id: labelText
-                text: "У вас ещё нет аккаунта?"
+                text: "У вас уже есть аккаунт? "
+                anchors.left: parent.left
+                anchors.leftMargin: 130
                 font.family: "Roboto"
                 font.weight: Font.Normal
                 font.pixelSize: 14
@@ -325,7 +545,8 @@ Window {
 
             Text {
                 id: registText
-                text: "Зарегистрироваться"
+                anchors.left: labelText.right
+                text: "Войти"
                 font.family: "Roboto"
                 font.weight: Font.Normal
                 font.pixelSize: 14
@@ -338,12 +559,7 @@ Window {
                     id: mouseArea
                     anchors.fill: parent
                     onClicked: {
-                        var component = Qt.createComponent(
-                                    "qrc:/myFiles/source/qml/RegisterWindow.qml")
-                        console.log("Component Status:", component.status,
-                                    component.errorString())
-                        var window = component.createObject()
-                        window.show()
+                        console.log("Войти")
                     }
                     cursorShape: Qt.PointingHandCursor
                 }
@@ -356,14 +572,14 @@ Window {
 
         Button {
             id: signUpButton
-            width: 124
+            width: 182
             height: 36
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: rowLayoutRegist.top
             anchors.bottomMargin: 20
             hoverEnabled: true
             Text {
-                text: "Войти"
+                text: "Зарегистрироваться"
                 font.family: "Roboto"
                 font.weight: Font.Normal
                 font.pixelSize: 14
@@ -377,7 +593,9 @@ Window {
             }
 
             onClicked: {
-                if (authClassObj.checkUser(usernameField.text,
+
+
+                /*if (authClassObj.checkUser(usernameField.text,
                                            passwordField.text)) {
                     var component = Qt.createComponent(
                                 "qrc:/myFiles/source/qml/MainWindowApps.qml")
@@ -385,6 +603,91 @@ Window {
                                 component.errorString())
                     var window = component.createObject()
                     window.show()
+                }*/
+            }
+        }
+
+        RowLayout {
+            id: rowLayoutPolicy
+            width: parent.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: rowLayoutPolicyLabel.top
+            anchors.left: parent.left
+            anchors.bottomMargin: 5
+
+            Text {
+                id: aboutText
+                anchors.left: parent.left
+                anchors.leftMargin: 90
+                text: "Регистрируясь, вы соглашаетесь с нашими  "
+                font.family: "Roboto"
+                font.weight: Font.Normal
+                font.pixelSize: 14
+                horizontalAlignment: Text.AlignHCenter
+                color: "#616161"
+            }
+        }
+        RowLayout {
+            id: rowLayoutPolicyLabel
+            width: parent.width
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: frame495.bottom
+            anchors.left: parent.left
+            anchors.bottomMargin: 32
+
+            Text {
+                id: rulesText
+                text: "Условиями использования "
+                font.family: "Roboto"
+                anchors.right: iText.left
+                font.weight: Font.Normal
+                font.pixelSize: 14
+                horizontalAlignment: Text.AlignHCenter
+                textFormat: Text.RichText
+                color: "#2C98F0"
+                Layout.rightMargin: 1
+
+                MouseArea {
+                    id: mouseAreaRulesText
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log("Войти")
+                    }
+                    cursorShape: Qt.PointingHandCursor
+                }
+            }
+
+            Text {
+                id: iText
+                text: "и "
+                anchors.left: parent.left
+                anchors.leftMargin: 200
+                font.family: "Roboto"
+                font.weight: Font.Normal
+                font.pixelSize: 14
+                horizontalAlignment: Text.AlignHCenter
+                color: "#616161"
+            }
+
+            Text {
+                id: policyText
+                anchors.left: iText.right
+                text: "Политикой конфиденциальности"
+                font.family: "Roboto"
+                font.weight: Font.Normal
+                font.pixelSize: 14
+                horizontalAlignment: Text.AlignHCenter
+                textFormat: Text.RichText
+                color: "#2C98F0"
+                Layout.rightMargin: 1
+
+                MouseArea {
+                    id: mouseAreaPolicyText
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log("Войти")
+                    }
+                    cursorShape: Qt.PointingHandCursor
                 }
             }
         }

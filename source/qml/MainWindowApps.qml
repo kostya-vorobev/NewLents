@@ -124,7 +124,7 @@ Window {
                 }
 
                 onClicked: {
-                    windowLoader.source = "qrc:/myFiles/MiniAppsWindow.qml"
+                    windowLoader.source = "qrc:/myFiles/source/qml/MiniAppsWindow.qml"
                 }
             }
 
@@ -171,7 +171,7 @@ Window {
                 }
 
                 onClicked: {
-                    windowLoader.source = "qrc:/myFiles/PopularWindow.qml"
+                    windowLoader.source = "qrc:/myFiles/source/qml/PopularWindow.qml"
                 }
             }
             Button {
@@ -217,7 +217,7 @@ Window {
                 }
 
                 onClicked: {
-                    windowLoader.source = "qrc:/myFiles/Top10Window.qml"
+                    windowLoader.source = "qrc:/myFiles/source/qml/Top10Window.qml"
                 }
             }
             Button {
@@ -263,7 +263,7 @@ Window {
                 }
 
                 onClicked: {
-                    windowLoader.source = "qrc:/myFiles/NewWindow.qml"
+                    windowLoader.source = "qrc:/myFiles/source/qml/NewWindow.qml"
                 }
             }
 
@@ -310,7 +310,7 @@ Window {
                 }
 
                 onClicked: {
-                    windowLoader.source = "qrc:/myFiles/CommunicationWindow.qml"
+                    windowLoader.source = "qrc:/myFiles/source/qml/CommunicationWindow.qml"
                 }
             }
 
@@ -357,7 +357,7 @@ Window {
                 }
 
                 onClicked: {
-                    windowLoader.source = "qrc:/myFiles/QuestionnairesWindow.qml"
+                    windowLoader.source = "qrc:/myFiles/source/qml/QuestionnairesWindow.qml"
                 }
             }
 
@@ -385,7 +385,7 @@ Window {
                 }
 
                 onClicked: {
-                    windowLoader.source = "qrc:/myFiles/AboutWindow.qml"
+                    windowLoader.source = "qrc:/myFiles/source/qml/AboutWindow.qml"
                 }
             }
 
@@ -413,7 +413,7 @@ Window {
                 }
 
                 onClicked: {
-                    windowLoader.source = "qrc:/myFiles/PolicyWindow.qml"
+                    windowLoader.source = "qrc:/myFiles/source/qml/PolicyWindow.qml"
                 }
             }
 
@@ -501,7 +501,7 @@ Window {
                             id: loginTextMouseArea
                             anchors.fill: parent
                             onClicked: {
-                                windowLoader.source = "qrc:/myFiles/EditProfileWindow.qml"
+                                windowLoader.source = "qrc:/myFiles/source/qml/EditProfileWindow.qml"
                             }
 
                             cursorShape: Qt.PointingHandCursor

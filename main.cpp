@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <authclass.h>
+#include <qdatepicker.h>
 
 int main(int argc, char *argv[])
 {
@@ -9,6 +10,9 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     qmlRegisterType<AuthClass>("AuthModule", 1, 0, "AuthClass");
+
+    qmlRegisterType<QDatePicker>("QDatePicker",1,0,"QDatePicker");
+
     const QUrl url(u"qrc:/NewLents/main.qml"_qs);
     QObject::connect(
         &engine,

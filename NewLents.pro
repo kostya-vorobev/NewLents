@@ -1,8 +1,9 @@
-QT += qml quick
+QT += qml quick quickcontrols2
 
 SOURCES += \
         authclass.cpp \
-        main.cpp
+        main.cpp \
+        qdatepicker.cpp
 
 resources.files = main.qml 
 resources.prefix = /$${TARGET}
@@ -23,4 +24,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
-    authclass.h
+    authclass.h \
+    qdatepicker.h
